@@ -2,13 +2,25 @@
     <string name="app_name">BooksApp</string>
     <string name="select_a_category">Select a category</string>
     <string name="category">Category</string>
+    <string name="search_by_title_and_authors">Search by Title and Authors</string>
+    <string name="search">Search</string>
+    <string name="downloads_count">%s downloads</string>
+    <string name="languages">Languages : %s</string>
+    <string name="fetching_more_books">Fetching More Books…</string>
+    <string name="fetching_books">Fetching Books…</string>
+    <string name="added_new_books">Added New Books</string>
+    <string name="connect_to_internet">Please connect to Internet</string>
+    <string name="unable_to_load_book">Unable To Load Book</string>
+    <string name="no_books">No Books Found</string>
 
     <string-array name="categories">
+        <item>Biography</item>
         <item>Fiction</item>
         <item>Adventure</item>
         <item>Literature</item>
         <item>Romance</item>
         <item>Political</item>
+        <item>Child</item>
         <item>Detective</item>
     </string-array>
 </resources>

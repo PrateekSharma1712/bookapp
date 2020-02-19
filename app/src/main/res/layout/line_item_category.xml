@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="200dp"
-    app:cardCornerRadius="@dimen/dimen_8dp"
-    app:cardElevation="@dimen/dimen_2dp"
+<com.google.android.material.button.MaterialButton xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="@dimen/dimen_8dp"
-    app:contentPadding="@dimen/dimen_8dp"
-    android:layout_height="200dp">
-
-    <TextView
-        android:id="@+id/categoryName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" />
-
-</androidx.cardview.widget.CardView>
+    android:id="@+id/categoryNameButton"
+    style="@style/CategoryNameTextStyle"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen_100dp"
+    android:layout_marginStart="@dimen/dimen_8dp"
+    android:layout_marginEnd="@dimen/dimen_8dp"
+    app:layout_constraintBottom_toBottomOf="@id/searchCardView"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toEndOf="@id/searchCardView"
+    app:layout_constraintTop_toTopOf="@id/searchCardView" />

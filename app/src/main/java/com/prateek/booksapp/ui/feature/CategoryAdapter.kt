@@ -18,8 +18,8 @@ class CategoryAdapter(private val categoryClickListener: CategoryClickListener) 
 
     inner class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(categoryName: String, clickListener: CategoryClickListener) {
-            itemView.categoryName.text = categoryName
+        fun bind(categoryName: String) {
+            itemView.categoryNameButton.text = categoryName
             itemView.setOnClickListener {
                 categoryClickListener.onCategoryClicked(categoryName)
             }
@@ -37,7 +37,7 @@ class CategoryAdapter(private val categoryClickListener: CategoryClickListener) 
     }
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
-        holder.bind(getItem(position), categoryClickListener)
+        holder.bind(getItem(position))
     }
 
     companion object DiffCallback : DiffUtil.ItemCallback<String>() {

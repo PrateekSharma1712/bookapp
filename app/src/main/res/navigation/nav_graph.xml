@@ -2,7 +2,6 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
     app:startDestination="@id/categoryFragment">
 
     <fragment
@@ -11,7 +10,7 @@
         android:label="@string/select_a_category"
         tools:layout="@layout/fragment_category">
         <action
-            android:id="@+id/action_image_clicked"
+            android:id="@+id/actionCategoryClicked"
             app:destination="@id/booksFragment"
             app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/fade_out"

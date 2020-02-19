@@ -6,18 +6,27 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class Formats(
-    @Json(name = "application/epub+zip")
-    val applicationepubzip: String?,
-    @Json(name = "application/rdf+xml")
-    val applicationrdfxml: String?,
-    @Json(name = "application/x-mobipocket-ebook")
-    val applicationxMobipocketEbook: String?,
-    @Json(name = "application/zip")
-    val applicationzip: String?,
+    @Json(name = "text/html")
+    val html: String?,
     @Json(name = "text/html; charset=utf-8")
-    val texthtmlCharsetutf8: String?,
+    val htmlCharsetUTF8: String?,
+    @Json(name = "text/html; charset=iso-8859-1")
+    val htmlCharsetISO: String?,
+    @Json(name = "text/html; charset=us-ascii")
+    val htmlCharsetUSAscii: String?,
+
+    @Json(name = "application/pdf")
+    val pdf: String?,
+
+    @Json(name = "text/plain")
+    val text: String?,
     @Json(name = "text/plain; charset=us-ascii")
-    val textplainCharsetusAscii: String?,
+    val textCharsetUSAscii: String?,
     @Json(name = "text/plain; charset=utf-8")
-    val textplainCharsetutf8: String?
+    val textCharsetUTF8: String?,
+    @Json(name = "text/plain; charset=iso-8859-1")
+    val textCharsetISO: String?,
+
+    @Json(name = "image/jpeg")
+    val imageURL: String?
 )
