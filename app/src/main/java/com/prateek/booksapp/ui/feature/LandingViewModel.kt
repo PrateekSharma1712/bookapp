@@ -13,13 +13,6 @@ import javax.inject.Inject
 
 class LandingViewModel @Inject constructor(private val repository: BookRepository) : ViewModel() {
 
-    private lateinit var _selectedCategory: String
-    var selectedCategory: String
-        get() = _selectedCategory
-        set(value) {
-            _selectedCategory = value
-        }
-
     private var pageCount = 1
     private var isNextPagePresent: String? = null
     private var fetchingBooks = false
@@ -31,6 +24,18 @@ class LandingViewModel @Inject constructor(private val repository: BookRepositor
     val filteredBooksLiveData: LiveData<List<Book?>>
         get() = _filteredBooksLiveData
 
+    private lateinit var _selectedCategory: String
+    var selectedCategory: String
+        get() = _selectedCategory
+        set(value) {
+            _selectedCategory = value
+        }
+
+
+    /***
+     * Called to retrieve books from repository and update the live data of books
+     * filtering books based on category and search text typed in edit field
+     */
     fun fetchBooks() {
         if (!fetchingBooks) {
             fetchingBooks = true
@@ -55,6 +60,11 @@ class LandingViewModel @Inject constructor(private val repository: BookRepositor
         }
     }
 
+    /***
+     * @param searchString [String] is search string typed in the edit field
+     * This method filters books based on title and authors as typed
+     * in the search field
+     */
     private fun filterBooksByAuthorAndTitle(searchString: String) {
         val filteredBooks = _books.filter {
             it?.authors?.any { author ->
@@ -70,6 +80,10 @@ class LandingViewModel @Inject constructor(private val repository: BookRepositor
         filterBooksByAuthorAndTitle(searchString)
     }
 
+    /***
+     * This methods helps in calling next page of books when
+     * end of recycler view is reached
+     */
     fun reachedEndOfList() {
         if (isNextPagePresent != null) {
             pageCount++
@@ -77,6 +91,11 @@ class LandingViewModel @Inject constructor(private val repository: BookRepositor
         }
     }
 
+    /***
+     * @param categoryName [String]
+     * This method resets books list, search field text, page count and
+     * also clears the live data storing books list, so that UI also has nothing to show
+     */
     fun onCategorySelected(categoryName: String) {
         searchString = ""
         _books.clear()
@@ -89,6 +108,11 @@ class LandingViewModel @Inject constructor(private val repository: BookRepositor
         isNetworkConnected.postValue(isConnected)
     }
 
+    /***
+     * @param book [Book]
+     * This method returns a priority based book url in the following order
+     * HTML <- PDF <- TEXT
+     */
     fun onBookClicked(book: Book): String? {
         return when {
             book.formats?.pdf?.isNotEmpty() == true && !book.formats.pdf.endsWith(".zip") -> {

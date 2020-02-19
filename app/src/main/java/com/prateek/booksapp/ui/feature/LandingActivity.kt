@@ -40,6 +40,11 @@ class LandingActivity : AppCompatActivity() {
         initialiseNetworkState()
     }
 
+    /***
+     * This method notifies view model [LandingViewModel] when
+     * internet connection is available or lost
+     * based on which books screen [BooksFragment] updates the UI
+     */
     private fun initialiseNetworkState() {
         connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         networkRequest = NetworkRequest.Builder()
@@ -59,6 +64,9 @@ class LandingActivity : AppCompatActivity() {
         }
     }
 
+    /***
+     * Updates the title of Books Fragment [BooksFragment] with selected category
+     */
     fun updateTitle() {
         toolbar.title = landingViewModel.selectedCategory
     }

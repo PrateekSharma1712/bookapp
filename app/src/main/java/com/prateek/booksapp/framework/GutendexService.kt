@@ -8,6 +8,9 @@ import retrofit2.http.Query
 
 interface GutendexService {
 
+    /***
+     * Fetches books from API having mime type as image/jpeg page wise
+     */
     @GET("books")
     fun fetchBooksAsync(
         @Query("page") page: Int = 1, @Query(

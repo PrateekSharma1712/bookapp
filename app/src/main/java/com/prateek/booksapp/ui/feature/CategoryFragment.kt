@@ -28,10 +28,16 @@ class CategoryFragment : Fragment(R.layout.fragment_category), CategoryAdapter.C
         showCategories()
     }
 
+    /***
+     * Loads category from strings array [R.array.categories]
+     */
     private fun fetchCategories() {
         categoryArray = resources.getStringArray(R.array.categories)
     }
 
+    /***
+     * This methods shows the categories in the categories recycler view
+     */
     private fun showCategories() {
         categoryAdapter = CategoryAdapter(this)
         categoriesRecyclerView.apply {
@@ -42,6 +48,9 @@ class CategoryFragment : Fragment(R.layout.fragment_category), CategoryAdapter.C
         categoryAdapter.submitList(categoryArray.toList())
     }
 
+    /***
+     * Navigates to books screen when a category is selected
+     */
     override fun onCategoryClicked(categoryName: String) {
         landingViewModel.onCategorySelected(categoryName)
         findNavController().navigate(CategoryFragmentDirections.actionCategoryClicked())

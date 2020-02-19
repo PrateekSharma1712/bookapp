@@ -45,6 +45,9 @@ class BooksFragment : Fragment(R.layout.fragment_books), BookAdapter.BooksClickL
         landingViewModel.fetchBooks()
     }
 
+    /***
+     * Initialises Custom Tabs to load book content in chrome custom tabs
+     */
     private fun initialiseCustomTab() {
         customTabsIntent = CustomTabsIntent.Builder()
         customTabsIntent.setToolbarColor(ContextCompat.getColor(requireActivity(), R.color.colorPrimary))
@@ -56,6 +59,10 @@ class BooksFragment : Fragment(R.layout.fragment_books), BookAdapter.BooksClickL
         )
     }
 
+    /***
+     * Creates adapter for books and tracks scrolling of recycler view,
+     * Handles click of search button and registers for search field IME action
+     */
     private fun initialiseUIElement() {
         bookAdapter = BookAdapter(this, requireActivity())
         booksRecyclerView.apply {
@@ -87,6 +94,11 @@ class BooksFragment : Fragment(R.layout.fragment_books), BookAdapter.BooksClickL
         }
     }
 
+    /***
+     * All the observers for live data defined in view model [LandingViewModel] are created here
+     * When network connectivity is active or lost,
+     * some UI elements animate to alpha 0 or 1 as required
+     */
     private fun initialiseObservers() {
         landingViewModel.filteredBooksLiveData.observe(requireActivity(), Observer {
             if (::snackBar.isInitialized) {
@@ -130,6 +142,10 @@ class BooksFragment : Fragment(R.layout.fragment_books), BookAdapter.BooksClickL
         })
     }
 
+    /***
+     * This method gets invoked when a book is clicked and
+     * results in showing book content in chrome custom tabs
+     */
     override fun onBookClicked(book: Book) {
         val bookURL = landingViewModel.onBookClicked(book)
         if (bookURL.isNullOrEmpty()) {
@@ -144,6 +160,10 @@ class BooksFragment : Fragment(R.layout.fragment_books), BookAdapter.BooksClickL
         customTabsIntent.build().launchUrl(requireActivity(), Uri.parse(bookURL))
     }
 
+    /***
+     * This method is called when user has reached end of the screen while scrolling
+     * New set of books are fetched from API and appended in the recycler view
+     */
     fun reachedEndOfList() {
         landingViewModel.reachedEndOfList()
         snackBar =
