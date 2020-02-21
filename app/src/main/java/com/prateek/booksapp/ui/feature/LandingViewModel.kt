@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.prateek.booksapp.framework.model.Book
 import com.prateek.booksapp.framework.network.BookRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.net.UnknownHostException
@@ -39,7 +40,7 @@ class LandingViewModel @Inject constructor(private val repository: BookRepositor
     fun fetchBooks() {
         if (!fetchingBooks) {
             fetchingBooks = true
-            viewModelScope.launch {
+            viewModelScope.launch(Dispatchers.IO) {
                 delay(500)
                 try {
                     val (books, nextPage) = repository.fetchBooks(pageCount)
